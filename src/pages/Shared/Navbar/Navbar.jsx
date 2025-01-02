@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const links = (
     <>
-      <li className="list-none">
+      <li>
         <Link className="hover:text-yellow-400">HOME</Link>
       </li>
       <li>
@@ -25,7 +25,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-[#1f2937] text-white">
+    <div className="navbar fixed z-10 bg-opacity-30 bg-[#1f2937] text-white">
       {/* Mobile Menu Icon (Left) */}
       <div className="dropdown">
         <label tabIndex={0} className="btn p-0 btn-sm btn-ghost lg:hidden">
@@ -42,7 +42,7 @@ const Navbar = () => {
       {/* Logo (Center on Mobile, Left on Desktop) */}
       <div className="flex-1">
         <a className="text-2xl font-bold tracking-wide">
-          BISTRO BOSS <span className="font-light">RESTAURANT</span>
+          BISTRO BOSS <br /> <span className="font-light">RESTAURANT</span>
         </a>
       </div>
 
