@@ -25,7 +25,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar fixed z-10 bg-opacity-30 bg-[#1f2937] text-white">
+    <div className="navbar max-w-7xl fixed z-10 bg-opacity-30 bg-black text-white">
       {/* Mobile Menu Icon (Left) */}
       <div className="dropdown">
         <label tabIndex={0} className="btn p-0 btn-sm btn-ghost lg:hidden">
