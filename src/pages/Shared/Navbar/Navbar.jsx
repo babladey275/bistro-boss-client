@@ -7,7 +7,9 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <Link className="hover:text-yellow-400">HOME</Link>
+        <Link to={"/"} className="hover:text-yellow-400">
+          HOME
+        </Link>
       </li>
       <li>
         <Link className="hover:text-yellow-400">CONTACT US</Link>
@@ -16,7 +18,9 @@ const Navbar = () => {
         <Link className="hover:text-yellow-400">DASHBOARD</Link>
       </li>
       <li>
-        <Link className="hover:text-yellow-400">OUR MENU</Link>
+        <Link to={"/menu"} className="hover:text-yellow-400">
+          OUR MENU
+        </Link>
       </li>
       <li>
         <Link className="hover:text-yellow-400">OUR SHOP</Link>
