@@ -2,7 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "auth-bgImg": "url('/src/assets/others/authentication.png')",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };
