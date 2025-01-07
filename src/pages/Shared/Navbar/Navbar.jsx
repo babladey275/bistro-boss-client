@@ -23,7 +23,9 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="hover:text-yellow-400">OUR SHOP</Link>
+        <Link to={"/order/salad"} className="hover:text-yellow-400">
+          ORDER FOOD
+        </Link>
       </li>
     </>
   );

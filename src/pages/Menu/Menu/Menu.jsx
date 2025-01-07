@@ -35,23 +35,23 @@ const Menu = () => {
         subHeading={"Don't miss"}
         heading={"Today's Offer"}
       ></SectionTitle>
-      <MenuCategory items={offered}></MenuCategory>
+      <MenuCategory items={offered} />
 
       {/* dessert menu items */}
       <MenuCategory
         items={desserts}
         img={dessertImg}
-        title={"Desserts"}
+        title={"dessert"}
         description={
           "Indulge in sweet and delicious treats to end your meal. Our desserts are crafted to satisfy your cravings."
         }
-      ></MenuCategory>
+      />
 
       {/* pizza menu items */}
       <MenuCategory
         items={pizza}
         img={pizzaImg}
-        title={"Pizza"}
+        title={"pizza"}
         description={
           "Savor the best pizzas, baked to perfection. Whether you prefer classic or unique toppings, we have something for everyone."
         }
@@ -61,7 +61,7 @@ const Menu = () => {
       <MenuCategory
         items={salads}
         img={saladImg}
-        title={"Salads"}
+        title={"salad"}
         description={
           "Fresh, crunchy, and healthy options for every taste. Enjoy a refreshing salad as a light meal or a perfect side."
         }
@@ -71,7 +71,7 @@ const Menu = () => {
       <MenuCategory
         items={soups}
         img={soupImg}
-        title={"Soups"}
+        title={"soup"}
         description={
           "Warm and comforting soups, perfect for any season. Our soups are rich in flavor and made with the freshest ingredients."
         }
