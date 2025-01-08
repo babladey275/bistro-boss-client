@@ -1,14 +1,37 @@
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from "react-simple-captcha";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import loginImg from "../../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 const Login = () => {
+  const captchaRef = useRef(null);
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+  };
+
+  const handleValidateCaptcha = () => {
+    const user_captcha_value = captchaRef.current.value;
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   };
 
   return (
@@ -44,23 +67,26 @@ const Login = () => {
               />
             </div>
             <div className="form-control mb-6">
-              <label className="block text-sm font-medium mb-2">Captcha</label>
-              <div className="flex items-center space-x-3">
-                <div className="border p-2 rounded-md text-center w-1/2 bg-gray-100 italic">
-                  UAgIuo
-                </div>
-                <a href="#" className="text-blue-500 link link-hover text-sm">
-                  Reload Captcha
-                </a>
-              </div>
+              <label className="block text-sm font-medium mb-2">
+                <LoadCanvasTemplate />
+              </label>
               <input
                 type="text"
-                placeholder="Type here"
+                ref={captchaRef}
+                name="captcha"
+                placeholder="Type the captcha above"
                 className="w-full input input-bordered mt-4"
                 required
               />
+              <button
+                onClick={handleValidateCaptcha}
+                className="btn btn-outline mt-2 btn-xs"
+              >
+                Validate Captcha
+              </button>
             </div>
             <button
+              disabled={disabled}
               type="submit"
               className="btn bg-[#DBB884] hover:bg-[#D1A054] border-none"
             >
