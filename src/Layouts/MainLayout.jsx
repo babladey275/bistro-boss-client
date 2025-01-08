@@ -6,7 +6,8 @@ import { Outlet, useLocation } from "react-router-dom";
 const MainLayout = () => {
   const location = useLocation();
   // console.log(location);
-  const isNoHeaderFooter = location.pathname.includes("login");
+  const isNoHeaderFooter =
+    location.pathname.includes("login") || location.pathname.includes("signup");
 
   return (
     <div className="max-w-7xl mx-auto">
