@@ -1,9 +1,16 @@
-import React from "react";
-import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
-import { HiMenu } from "react-icons/hi"; // Mobile Menu Icon
+import React, { useContext } from "react";
+import { HiMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut();
+  };
+
   const links = (
     <>
       <li>
@@ -27,11 +34,34 @@ const Navbar = () => {
           ORDER FOOD
         </Link>
       </li>
-      <li>
-        <Link to={"/login"} className="hover:text-yellow-400">
-          LOGIN
-        </Link>
-      </li>
+      {user ? (
+        <>
+          <li className="flex flex-row">
+            <button onClick={handleLogOut} className="hover:text-yellow-400">
+              SIGN OUT
+            </button>
+            {/* <span className="relative">
+              <img
+                src={user.photoURL}
+                className="w-8 h-8 rounded-full"
+                alt="User Avatar"
+                data-tooltip-id="user-tooltip"
+                data-tooltip-place="left"
+                aria-describedby="user-tooltip"
+              />
+              <Tooltip id="user-tooltip" content={user.displayName || "User"} />
+            </span> */}
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to={"/login"} className="hover:text-yellow-400">
+              LOGIN
+            </Link>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -62,18 +92,19 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
 
-      {/* Cart & User (Right Section) */}
-      <div className="flex items-center gap-6">
-        <div className="relative">
-          <FaShoppingCart className="text-2xl" />
-          <span className="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-1">
-            1
+      <div>
+        {user && (
+          <span className="relative cursor-pointer mr-4">
+            <img
+              src={user.photoURL}
+              className="w-9 h-9 rounded-full"
+              alt="User Avatar"
+              data-tooltip-id="user-tooltip"
+              data-tooltip-place="left"
+            />
+            <Tooltip id="user-tooltip" content={user.displayName || "User"} />
           </span>
-        </div>
-        <div className="flex items-center gap-2 cursor-pointer">
-          <span>SIGN OUT</span>
-          <FaUserCircle className="text-2xl" />
-        </div>
+        )}
       </div>
     </div>
   );
