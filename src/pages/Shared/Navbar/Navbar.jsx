@@ -3,6 +3,7 @@ import { HiMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 import { Tooltip } from "react-tooltip";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -33,6 +34,12 @@ const Navbar = () => {
         <Link to={"/order/salad"} className="hover:text-yellow-400">
           ORDER FOOD
         </Link>
+      </li>
+      <li>
+        <button>
+          <FaShoppingCart className="text-xl" />
+          <div className="badge badge-secondary">+99</div>
+        </button>
       </li>
       {user ? (
         <>
