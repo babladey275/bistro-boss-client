@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 import { Tooltip } from "react-tooltip";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     logOut();
@@ -38,7 +40,7 @@ const Navbar = () => {
       <li>
         <button>
           <FaShoppingCart className="text-xl" />
-          <div className="badge badge-secondary">+99</div>
+          <div className="badge badge-secondary">+{cart.length}</div>
         </button>
       </li>
       {user ? (
@@ -47,17 +49,6 @@ const Navbar = () => {
             <button onClick={handleLogOut} className="hover:text-yellow-400">
               SIGN OUT
             </button>
-            {/* <span className="relative">
-              <img
-                src={user.photoURL}
-                className="w-8 h-8 rounded-full"
-                alt="User Avatar"
-                data-tooltip-id="user-tooltip"
-                data-tooltip-place="left"
-                aria-describedby="user-tooltip"
-              />
-              <Tooltip id="user-tooltip" content={user.displayName || "User"} />
-            </span> */}
           </li>
         </>
       ) : (
