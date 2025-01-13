@@ -38,10 +38,12 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <button>
-          <FaShoppingCart className="text-xl" />
-          <div className="badge badge-secondary">+{cart.length}</div>
-        </button>
+        <Link to={"/dashboard/manage-items"}>
+          <button className="flex gap-2">
+            <FaShoppingCart className="text-xl" />
+            <div className="badge badge-secondary">+{cart.length}</div>
+          </button>
+        </Link>
       </li>
       {user ? (
         <>
