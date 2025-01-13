@@ -1,13 +1,13 @@
 import {
   FaHome,
   FaUtensils,
-  FaShoppingCart,
   FaUsers,
   FaClipboardList,
   FaTasks,
   FaPlusCircle,
   FaPhoneAlt,
 } from "react-icons/fa";
+import { MdFastfood } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const DashboardSidebar = () => {
@@ -41,10 +41,10 @@ const DashboardSidebar = () => {
             <FaUsers /> All Users
           </NavLink>
         </li>
-        <hr className=" border-white" />
+        <hr className="border-white" />
         {/* General Menu */}
         <li>
-          <NavLink to={"/home"}>
+          <NavLink to={"/"}>
             <FaHome /> Home
           </NavLink>
         </li>
@@ -54,8 +54,9 @@ const DashboardSidebar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/shop"}>
-            <FaShoppingCart /> Shop
+          <NavLink to={"/order/salad"}>
+            <MdFastfood />
+            Order Food
           </NavLink>
         </li>
         <li>
