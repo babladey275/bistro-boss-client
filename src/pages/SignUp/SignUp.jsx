@@ -7,11 +7,14 @@ import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
@@ -23,16 +26,26 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            Swal.fire({
-              icon: "success",
-              title: "Registration Successful!",
-              text: "You have successfully registered!",
-              confirmButtonText: "OK",
-            }).then(() => {
-              logOut().then(() => navigate("/login"));
+            // create user entry in the database
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                  icon: "success",
+                  title: "Registration Successful!",
+                  text: "You have successfully registered!",
+                  confirmButtonText: "OK",
+                }).then(() => {
+                  logOut().then(() => navigate("/login"));
+                });
+              }
             });
           })
           .catch((error) => {
