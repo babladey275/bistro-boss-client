@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import authImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
@@ -8,6 +7,7 @@ import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -169,16 +169,8 @@ const SignUp = () => {
                 </Link>
               </p>
               <div className="divider">Or sign up with</div>
-              <div className="flex justify-center space-x-6 mt-4">
-                <button className="btn btn-circle btn-outline border-gray-300">
-                  <FaFacebookF />
-                </button>
-                <button className="btn btn-circle btn-outline border-gray-300">
-                  <FaGoogle />
-                </button>
-                <button className="btn btn-circle btn-outline border-gray-300">
-                  <FaGithub />
-                </button>
+              <div className="mt-4">
+                <SocialLogin />
               </div>
             </form>
           </div>

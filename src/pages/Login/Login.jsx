@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -139,16 +140,8 @@ const Login = () => {
                 </Link>
               </p>
               <div className="divider">Or sign in with</div>
-              <div className="flex justify-center space-x-6 mt-4">
-                <button className="btn btn-circle btn-outline border-gray-300">
-                  <FaFacebookF />
-                </button>
-                <button className="btn btn-circle btn-outline border-gray-300">
-                  <FaGoogle />
-                </button>
-                <button className="btn btn-circle btn-outline border-gray-300">
-                  <FaGithub />
-                </button>
+              <div className="mt-4">
+                <SocialLogin />
               </div>
             </form>
           </div>
