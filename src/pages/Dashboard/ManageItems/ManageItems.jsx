@@ -1,6 +1,6 @@
 import React from "react";
 import useCart from "../../../hooks/useCart";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 
@@ -70,10 +70,10 @@ const ManageItems = () => {
                 <td>${item.price}</td>
                 <th>
                   <button
-                    onClick={() => handleDelete(item._id)}
-                    className="btn btn-ghost btn-lg"
+                    onClick={() => handleDelete(user._id)}
+                    className="btn bg-[#B91C1C] hover:bg-[#942d2d]"
                   >
-                    <FaTrashAlt className="text-red-600" />
+                    <FaRegTrashAlt className="text-white text-xl" />
                   </button>
                 </th>
               </tr>
