@@ -10,10 +10,11 @@ import {
 } from "react-icons/fa";
 import { MdFastfood } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../../../hooks/useAdmin";
 
 const DashboardSidebar = () => {
   // TODO: get isAdmin value from the database
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="w-64 min-h-screen bg-[#D1A054] text-white">
