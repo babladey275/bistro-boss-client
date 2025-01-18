@@ -7,6 +7,10 @@ import {
   FaPlusCircle,
   FaPhoneAlt,
   FaShoppingCart,
+  FaRegCalendarAlt,
+  FaCreditCard,
+  FaStar,
+  FaListAlt,
 } from "react-icons/fa";
 import { MdFastfood } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -54,11 +58,14 @@ const DashboardSidebar = () => {
             {/* User Menu */}
             <li className="mb-4 font-semibold text-lg">User Panel</li>
             <li>
-              <NavLink to={"/dashboard/reservation"}>Reservation</NavLink>
+              <NavLink to={"/dashboard/reservation"}>
+                {" "}
+                <FaRegCalendarAlt /> Reservation
+              </NavLink>
             </li>
             <li>
               <NavLink to={"/dashboard/payment-history"}>
-                Payment History
+                <FaCreditCard /> Payment History
               </NavLink>
             </li>
             <li>
@@ -67,10 +74,14 @@ const DashboardSidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard/add-review"}>Add Review</NavLink>
+              <NavLink to={"/dashboard/add-review"}>
+                <FaStar /> Add Review
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard/my-booking"}>My Booking</NavLink>
+              <NavLink to={"/dashboard/my-booking"}>
+                <FaListAlt /> My Booking
+              </NavLink>
             </li>
           </>
         )}
