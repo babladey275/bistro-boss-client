@@ -3,6 +3,7 @@ import useCart from "../../../hooks/useCart";
 import { FaRegTrashAlt } from "react-icons/fa";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -27,7 +28,7 @@ const MyCart = () => {
 
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Your item has been deleted.",
               icon: "success",
             });
           }
@@ -38,10 +39,16 @@ const MyCart = () => {
 
   return (
     <div>
+      <div className="-mt-12">
+        <SectionTitle
+          heading={"Wanna Add More?"}
+          subHeading={"My Cart"}
+        ></SectionTitle>
+      </div>
       <div className="flex justify-evenly py-4">
         <h2 className="text-3xl font-semibold">Total Items: {cart.length}</h2>
         <h2 className="text-3xl font-semibold">Total Price: {totalPrice}</h2>
-        <button className="btn hover:bg-[#D1A054] bg-[#D1A054]">Pay</button>
+        <button className="btn hover:bg-[#cb9748] bg-[#d9a659]">Pay</button>
       </div>
       <div className="overflow-x-auto rounded-t-lg">
         <table className="table">
@@ -70,7 +77,7 @@ const MyCart = () => {
                 <td>${item.price}</td>
                 <th>
                   <button
-                    onClick={() => handleDelete(user._id)}
+                    onClick={() => handleDelete(item._id)}
                     className="btn bg-[#B91C1C] hover:bg-[#942d2d]"
                   >
                     <FaRegTrashAlt className="text-white text-xl" />
