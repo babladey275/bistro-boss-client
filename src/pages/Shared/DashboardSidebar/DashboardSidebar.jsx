@@ -69,7 +69,7 @@ const DashboardSidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard/cart"}>
+              <NavLink to={"/dashboard/my-cart"}>
                 <FaShoppingCart /> My Cart
               </NavLink>
             </li>
