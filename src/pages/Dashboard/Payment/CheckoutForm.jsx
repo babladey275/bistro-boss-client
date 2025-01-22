@@ -1,10 +1,28 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
+import useCart from "../../../hooks/useCart";
+import useAuth from "../../../hooks/useAuth";
 
 const CheckoutForm = () => {
+  const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+  const axiosSecure = UseAxiosSecure();
+  const { user } = useAuth();
+  const [cart] = useCart();
+  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
+  useEffect(() => {
+    axiosSecure
+      .post("/create-payment-intent", { price: totalPrice })
+      .then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
+  }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +49,29 @@ const CheckoutForm = () => {
       }
     } else {
       console.log("Payment method", paymentMethod);
-      toast.success("Payment successful!");
+    }
+
+    // confirm payment
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || "anonymous",
+            name: user?.displayName || "anonymous",
+          },
+        },
+      });
+
+    if (confirmError) {
+      console.log("confirm error");
+      toast.error("Payment confirmation failed.");
+    } else {
+      console.log("Payment intent", paymentIntent);
+      if (paymentIntent.status === "succeeded") {
+        toast.success("Payment successful!");
+        setTransactionId(paymentIntent.id);
+      }
     }
   };
 
@@ -56,9 +96,19 @@ const CheckoutForm = () => {
           },
         }}
       />
-      <button className="btn btn-primary my-4" type="submit" disabled={!stripe}>
+      <button
+        className="btn btn-primary my-4"
+        type="submit"
+        disabled={!stripe || !clientSecret}
+      >
         Pay
       </button>
+
+      {transactionId && (
+        <p className="text-green-600 font-semibold">
+          Your transaction id: {transactionId}
+        </p>
+      )}
     </form>
   );
 };
