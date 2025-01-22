@@ -4,6 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -48,7 +49,15 @@ const MyCart = () => {
       <div className="flex justify-evenly py-4">
         <h2 className="text-3xl font-semibold">Total Items: {cart.length}</h2>
         <h2 className="text-3xl font-semibold">Total Price: {totalPrice}</h2>
-        <button className="btn hover:bg-[#cb9748] bg-[#d9a659]">Pay</button>
+        {cart.length ? (
+          <Link to={"/dashboard/payment"}>
+            <button className="btn hover:bg-[#cb9748] bg-[#d9a659]">Pay</button>
+          </Link>
+        ) : (
+          <button disabled className="btn hover:bg-[#cb9748] bg-[#d9a659]">
+            Pay
+          </button>
+        )}
       </div>
       <div className="overflow-x-auto rounded-t-lg">
         <table className="table">
