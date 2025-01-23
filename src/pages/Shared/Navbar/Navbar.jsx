@@ -5,10 +5,12 @@ import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 import { Tooltip } from "react-tooltip";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const handleLogOut = () => {
     logOut();
@@ -24,9 +26,16 @@ const Navbar = () => {
       <li>
         <Link className="hover:text-yellow-400">CONTACT US</Link>
       </li>
-      <li>
-        <Link className="hover:text-yellow-400">DASHBOARD</Link>
-      </li>
+      {user && (
+        <li>
+          <Link
+            to={isAdmin ? "/dashboard/admin-home" : "/dashboard/user-home"}
+            className="hover:text-yellow-400"
+          >
+            DASHBOARD
+          </Link>
+        </li>
+      )}
       <li>
         <Link to={"/menu"} className="hover:text-yellow-400">
           OUR MENU

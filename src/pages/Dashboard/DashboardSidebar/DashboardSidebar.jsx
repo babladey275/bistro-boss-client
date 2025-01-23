@@ -31,7 +31,11 @@ const DashboardSidebar = () => {
         {isAdmin ? (
           <>
             {/* Admin Menu */}
-            <li className="mb-4 font-semibold text-lg">Admin Panel</li>
+            <li>
+              <NavLink to={"/dashboard/admin-home"}>
+                <FaHome /> Admin Home
+              </NavLink>
+            </li>
             <li>
               <NavLink to={"/dashboard/add-items"}>
                 <FaPlusCircle /> Add Items
@@ -56,10 +60,13 @@ const DashboardSidebar = () => {
         ) : (
           <>
             {/* User Menu */}
-            <li className="mb-4 font-semibold text-lg">User Panel</li>
+            <li>
+              <NavLink to={"/dashboard/user-home"}>
+                <FaHome /> User Home
+              </NavLink>
+            </li>
             <li>
               <NavLink to={"/dashboard/reservation"}>
-                {" "}
                 <FaRegCalendarAlt /> Reservation
               </NavLink>
             </li>
