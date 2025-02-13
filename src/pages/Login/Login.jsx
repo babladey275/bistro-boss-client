@@ -3,7 +3,6 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import authImg from "../../assets/others/authentication2.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
@@ -31,29 +30,31 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        Swal.fire({
-          title: "User login successful!",
-          showClass: {
-            popup: `
-            animate__animated
-            animate__fadeInUp
-            animate__faster
-          `,
-          },
-          hideClass: {
-            popup: `
-            animate__animated
-            animate__fadeOutDown
-            animate__faster
-          `,
-          },
-        });
+        // console.log(user);
+        if (user) {
+          Swal.fire({
+            title: "User login successful!",
+            showClass: {
+              popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+            `,
+            },
+            hideClass: {
+              popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+            `,
+            },
+          });
+        }
         navigate(from, { replace: true });
       })
       .catch((error) => {

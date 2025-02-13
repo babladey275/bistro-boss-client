@@ -15,7 +15,7 @@ const UpdateItem = () => {
   const axiosSecure = UseAxiosSecure();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     // image upload to imgbb and then get an url
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -33,7 +33,7 @@ const UpdateItem = () => {
         image: res.data.data.display_url,
       };
       const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
-      console.log(menuRes.data);
+      // console.log(menuRes.data);
       if (menuRes.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",

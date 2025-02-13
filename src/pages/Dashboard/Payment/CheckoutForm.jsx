@@ -24,7 +24,7 @@ const CheckoutForm = () => {
       axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
+          // console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -49,12 +49,12 @@ const CheckoutForm = () => {
     });
 
     if (error) {
-      console.log("Payment error", error);
+      // console.log("Payment error", error);
       if (error.message) {
         toast.error(error.message);
       }
     } else {
-      console.log("Payment method", paymentMethod);
+      // console.log("Payment method", paymentMethod);
     }
 
     // confirm payment
@@ -70,10 +70,10 @@ const CheckoutForm = () => {
       });
 
     if (confirmError) {
-      console.log("confirm error");
+      // console.log("confirm error");
       toast.error("Payment confirmation failed.");
     } else {
-      console.log("Payment intent", paymentIntent);
+      // console.log("Payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
         setTransactionId(paymentIntent.id);
 
